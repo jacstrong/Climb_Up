@@ -17,8 +17,9 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Transform" ]
 run_speed = 350
-jump_speed = -1000
+jump_speed = -1100
 gravity = 3000
+double_jump_speed = -600
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 

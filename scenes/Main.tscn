@@ -1,13 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/Main.gd" type="Script" id=1]
-[ext_resource path="res://scenes/Floor.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/Small_Floor.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/Main_Floor.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/Under_Floor.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/Side_Main_Floor.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/Floating_Floor.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/Main_Floor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Under_Floor.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/Side_Main_Floor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Camera2D.gd" type="Script" id=6]
 
 [node name="Main" type="Node2D" index="0"]
 
@@ -16,136 +14,125 @@ __meta__ = {
 "_edit_horizontal_guides_": [  ]
 }
 
-[node name="Floors" type="Node2D" parent="." index="0"]
+[node name="Platforms" type="Node2D" parent="." index="0"]
 
-[node name="Floor" parent="Floors" index="0" instance=ExtResource( 2 )]
-
-position = Vector2( 360, 336 )
-
-[node name="Small" parent="Floors" index="1" instance=ExtResource( 3 )]
-
-position = Vector2( 632, 392 )
-
-[node name="Small_Floor" parent="Floors" index="2" instance=ExtResource( 2 )]
-
-position = Vector2( 573.112, 249.251 )
-
-[node name="Grass" type="Node2D" parent="Floors" index="3"]
+[node name="Floors" type="Node2D" parent="." index="1"]
 
 editor/display_folded = true
 
-[node name="Small_Floor7" parent="Floors/Grass" index="0" instance=ExtResource( 4 )]
+[node name="Grass" type="Node2D" parent="Floors" index="0"]
+
+editor/display_folded = true
+
+[node name="Small_Floor7" parent="Floors/Grass" index="0" instance=ExtResource( 2 )]
 
 position = Vector2( 308, 548 )
 
-[node name="Small_Floor8" parent="Floors/Grass" index="1" instance=ExtResource( 4 )]
+[node name="Small_Floor8" parent="Floors/Grass" index="1" instance=ExtResource( 2 )]
 
 position = Vector2( 356, 548 )
 
-[node name="Small_Floor9" parent="Floors/Grass" index="2" instance=ExtResource( 4 )]
+[node name="Small_Floor9" parent="Floors/Grass" index="2" instance=ExtResource( 2 )]
 
 position = Vector2( 404, 548 )
 
-[node name="Small_Floor10" parent="Floors/Grass" index="3" instance=ExtResource( 4 )]
+[node name="Small_Floor10" parent="Floors/Grass" index="3" instance=ExtResource( 2 )]
 
 position = Vector2( 452, 548 )
 
-[node name="Small_Floor11" parent="Floors/Grass" index="4" instance=ExtResource( 4 )]
+[node name="Small_Floor11" parent="Floors/Grass" index="4" instance=ExtResource( 2 )]
 
 position = Vector2( 500, 548 )
 
-[node name="Small_Floor12" parent="Floors/Grass" index="5" instance=ExtResource( 4 )]
+[node name="Small_Floor12" parent="Floors/Grass" index="5" instance=ExtResource( 2 )]
 
 position = Vector2( 548, 548 )
 
-[node name="Small_Floor13" parent="Floors/Grass" index="6" instance=ExtResource( 4 )]
+[node name="Small_Floor13" parent="Floors/Grass" index="6" instance=ExtResource( 2 )]
 
 position = Vector2( 596, 548 )
 
-[node name="Small_Floor14" parent="Floors/Grass" index="7" instance=ExtResource( 4 )]
+[node name="Small_Floor14" parent="Floors/Grass" index="7" instance=ExtResource( 2 )]
 
 position = Vector2( 644, 548 )
 
-[node name="Under" type="Node2D" parent="Floors" index="4"]
+[node name="Under" type="Node2D" parent="Floors" index="1"]
 
 editor/display_folded = true
 
-[node name="Small_Floor10" parent="Floors/Under" index="0" instance=ExtResource( 5 )]
+[node name="Small_Floor10" parent="Floors/Under" index="0" instance=ExtResource( 3 )]
 
 position = Vector2( 300, 600 )
 
-[node name="Small_Floor11" parent="Floors/Under" index="1" instance=ExtResource( 5 )]
+[node name="Small_Floor11" parent="Floors/Under" index="1" instance=ExtResource( 3 )]
 
 position = Vector2( 332, 600 )
 
-[node name="Small_Floor12" parent="Floors/Under" index="2" instance=ExtResource( 5 )]
+[node name="Small_Floor12" parent="Floors/Under" index="2" instance=ExtResource( 3 )]
 
 position = Vector2( 364, 600 )
 
-[node name="Small_Floor13" parent="Floors/Under" index="3" instance=ExtResource( 5 )]
+[node name="Small_Floor13" parent="Floors/Under" index="3" instance=ExtResource( 3 )]
 
 position = Vector2( 396, 600 )
 
-[node name="Small_Floor14" parent="Floors/Under" index="4" instance=ExtResource( 5 )]
+[node name="Small_Floor14" parent="Floors/Under" index="4" instance=ExtResource( 3 )]
 
 position = Vector2( 428, 600 )
 
-[node name="Small_Floor15" parent="Floors/Under" index="5" instance=ExtResource( 5 )]
+[node name="Small_Floor15" parent="Floors/Under" index="5" instance=ExtResource( 3 )]
 
 position = Vector2( 460, 600 )
 
-[node name="Small_Floor16" parent="Floors/Under" index="6" instance=ExtResource( 5 )]
+[node name="Small_Floor16" parent="Floors/Under" index="6" instance=ExtResource( 3 )]
 
 position = Vector2( 492, 600 )
 
-[node name="Small_Floor17" parent="Floors/Under" index="7" instance=ExtResource( 5 )]
+[node name="Small_Floor17" parent="Floors/Under" index="7" instance=ExtResource( 3 )]
 
 position = Vector2( 524, 600 )
 
-[node name="Small_Floor18" parent="Floors/Under" index="8" instance=ExtResource( 5 )]
+[node name="Small_Floor18" parent="Floors/Under" index="8" instance=ExtResource( 3 )]
 
 editor/display_folded = true
 position = Vector2( 556, 600 )
 
-[node name="Main_Floor" parent="Floors/Under/Small_Floor18" index="1" instance=ExtResource( 6 )]
+[node name="Main_Floor" parent="Floors/Under/Small_Floor18" index="1" instance=ExtResource( 4 )]
 
 position = Vector2( -319, -31 )
 
-[node name="Main_Floor2" parent="Floors/Under/Small_Floor18" index="2" instance=ExtResource( 6 )]
+[node name="Main_Floor2" parent="Floors/Under/Small_Floor18" index="2" instance=ExtResource( 4 )]
 
 position = Vector2( 159.864, -31.1784 )
 scale = Vector2( -1, 1 )
 _sections_unfolded = [ "Transform" ]
 
-[node name="Small_Floor19" parent="Floors/Under" index="9" instance=ExtResource( 5 )]
+[node name="Small_Floor19" parent="Floors/Under" index="9" instance=ExtResource( 3 )]
 
 position = Vector2( 588, 600 )
 
-[node name="Small_Floor20" parent="Floors/Under" index="10" instance=ExtResource( 5 )]
+[node name="Small_Floor20" parent="Floors/Under" index="10" instance=ExtResource( 3 )]
 
 position = Vector2( 620, 600 )
 
-[node name="Small_Floor21" parent="Floors/Under" index="11" instance=ExtResource( 5 )]
+[node name="Small_Floor21" parent="Floors/Under" index="11" instance=ExtResource( 3 )]
 
 position = Vector2( 652, 600 )
 
-[node name="Floating_Floor" parent="Floors" index="5" instance=ExtResource( 7 )]
-
-position = Vector2( 284, 184 )
-
-[node name="Player" parent="." index="1" instance=ExtResource( 8 )]
+[node name="Player" parent="." index="2" instance=ExtResource( 5 )]
 
 position = Vector2( 496, 496 )
 
 [node name="Camera2D" type="Camera2D" parent="Player" index="2"]
 
+position = Vector2( 15.9606, -12.2774 )
 anchor_mode = 1
 rotating = false
 current = true
 zoom = Vector2( 1, 1 )
-limit_left = -10000000
-limit_top = -10000000
-limit_right = 10000000
+limit_left = 0
+limit_top = -100000000
+limit_right = 1024
 limit_bottom = 600
 limit_smoothed = false
 drag_margin_h_enabled = true
@@ -157,22 +144,48 @@ offset_h = 0.0
 drag_margin_left = 1.0
 drag_margin_top = 0.0
 drag_margin_right = 1.0
-drag_margin_bottom = 1.0
+drag_margin_bottom = 0.75
 editor_draw_screen = true
-editor_draw_limits = false
-editor_draw_drag_margin = false
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = ExtResource( 6 )
 _sections_unfolded = [ "Drag Margin", "Editor", "Limit", "Smoothing" ]
 
-[node name="Floating_Floor" parent="." index="2" instance=ExtResource( 7 )]
+[node name="Control" type="Control" parent="Player/Camera2D" index="0"]
 
-position = Vector2( 716.757, 87.1897 )
+anchor_left = 0.0
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+margin_left = -15.9606
+margin_top = -7.7226
+margin_right = 24.0394
+margin_bottom = 32.2774
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
 
-[node name="Floor" parent="." index="3" instance=ExtResource( 3 )]
+[node name="NumPlats" type="Label" parent="Player/Camera2D/Control" index="0"]
 
-position = Vector2( 413.506, 125.25 )
-
-[node name="Small_Floor" parent="." index="4" instance=ExtResource( 2 )]
-
-position = Vector2( 131.126, 55.2685 )
+anchor_left = 0.5
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 0.0
+margin_left = -20.0
+margin_right = 20.0
+margin_bottom = 14.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 4
+text = "numPlats"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 
