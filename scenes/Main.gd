@@ -7,11 +7,12 @@ var Platforms
 
 var large_plat
 var small_plat
-
 var plats = []
 
 var last_level
 var levels = []
+
+var score
 
 func _ready():
 	randomize()
@@ -20,7 +21,9 @@ func _ready():
 	screensize = get_viewport_rect().size
 	camera = $Player/Camera2D.get_viewport_transform()
 	Platforms = $Platforms
-	last_level = camera.get_origin().y + 200
+	last_level = 200
+	print(last_level)
+	score = 0;
 	
 	# platforms
 	large_plat = preload("res://scenes/Floating_Floor.tscn")
@@ -31,7 +34,7 @@ func _ready():
 	# Make camera current
 	$Player/Camera2D.make_current()
 	
-	for x in [400, 200 , 0, -200]:
+	for x in [400, 200 , 0, -200, -400]:
 		levels.push_front(x)
 		placePlats(x)
 	pass
@@ -39,31 +42,71 @@ func _ready():
 func _process(delta):
 	if ($Player/Camera2D.get_viewport_transform() != camera):
 		cameraMoved()
-		#print($Player/Camera2D.get_viewport_transform())
+		$UI.rect_position.y = $Player/Camera2D.get_viewport_transform().get_origin().y * -1
 	pass
 
 func cameraMoved():
 	camera = $Player/Camera2D.get_viewport_transform()
-	if (camera.get_origin().y) > (last_level + 200):
+	if (camera.get_origin().y) > (last_level):
 		placePlats((last_level + 200) * -1)
 		levels.push_front((last_level + 200) * -1)
 		print(levels)
 		removePlats(levels.back())
 		levels.pop_back()
-		last_level = camera.get_origin().y
+		last_level = ((last_level + 200))
+		score += 1
 
 func placePlats(y):
 	var num = floor(rand_range(2, 5))
+	var placedAt = []
 	for i in range(num):
 		var plat = plats[randi() % plats.size()].instance()
 		plat.position.y = y
-		plat.position.x = rand_range(0, screensize.x)
+		var pos
+		if placedAt.size() > 0:
+			var canPlace = false
+			while canPlace == false:
+				pos = rand_range(0, screensize.x)
+				var found = true
+				for i in placedAt:
+					if pos < i + 200 and pos > i - 200:
+						found = false
+				if found:
+					canPlace = true
+				
+			plat.position.x = pos
+			placedAt.append(pos)
+		else:
+			pos = rand_range(0, screensize.x)
+			plat.position.x = pos
+			placedAt.append(pos)
+			
 		$Platforms.add_child(plat)
 		platforms.push_front(plat)
-		$Player/Camera2D/Control/NumPlats.text = String(platforms.size())
+		$UI/Label.text = "Score: " + String(score)
 
 func removePlats(y):
 	while platforms.back().position.y == y:
 		platforms.back().queue_free()
 		platforms.pop_back()
+
+func removeAllPlats(y):
+	while platforms.size() > 0:
+		print(platforms.size())
+		platforms.back().queue_free()
+		platforms.pop_back()
+
+func restart():
+	for y in levels:
+		removeAllPlats(y)
+	levels = []
+	for x in [400, 200 , 0, -200, -400]:
+		levels.push_front(x)
+		placePlats(x)
+	last_level = 200
+	score = 0
 	
+
+func _on_Button_pressed():
+	restart()
+	pass # replace with function body

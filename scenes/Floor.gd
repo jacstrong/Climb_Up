@@ -32,6 +32,6 @@ func _fall_off():
 		self.visible = false
 		$AnimationTimer.start()
 	else:
-		queue_free()
+		self.position.x = -500
 	
 
