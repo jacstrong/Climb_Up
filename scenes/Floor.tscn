@@ -1,13 +1,19 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://sprites/tileset.png" type="Texture" id=1]
+[ext_resource path="res://scenes/Floor.gd" type="Script" id=1]
+[ext_resource path="res://sprites/tileset.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 24.0589, 14.8121 )
 
-[node name="Small_Floor" type="StaticBody2D"]
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 21.924, 3.44222 )
+
+[node name="Small_Floor" type="StaticBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -16,10 +22,14 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
+blinkTime = 0.2
+blinks = 3
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 593, 40, 64, 64 )
 _sections_unfolded = [ "Animation", "Region" ]
@@ -28,5 +38,42 @@ _sections_unfolded = [ "Animation", "Region" ]
 
 shape = SubResource( 1 )
 one_way_collision = true
+
+[node name="Area2D" type="Area2D" parent="." index="2"]
+
+input_pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+audio_bus_override = false
+audio_bus_name = "Master"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+
+position = Vector2( 0, -21.8932 )
+shape = SubResource( 2 )
+one_way_collision = true
+_sections_unfolded = [ "Transform" ]
+
+[node name="AnimationTimer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 0.2
+one_shot = true
+autostart = false
+
+[node name="AnimationFrameTimer" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 0.2
+one_shot = true
+autostart = false
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+
+[connection signal="timeout" from="AnimationTimer" to="." method="_on_AnimationTimer_timeout"]
+
+[connection signal="timeout" from="AnimationFrameTimer" to="." method="_on_AnimationFrameTimer_timeout"]
 
 

@@ -1,15 +1,37 @@
 extends StaticBody2D
 
-# class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
+export (float) var blinkTime = 0.2
+export (int) var blinks = 3
+var landedOn
+
 
 func _ready():
-	# Called when the node is added to the scene for the first time.
-	# Initialization here
+	landedOn = false
+	$AnimationFrameTimer.set("Wait Time", blinkTime)
+	$AnimationTimer.set("Wait Time", blinkTime)
 	pass
 
-#func _process(delta):
-#	# Called every frame. Delta is time since last frame.
-#	# Update game logic here.
-#	pass
+
+func _on_Area2D_body_entered(body):
+	if landedOn == false:
+		print("landed on")
+		$AnimationFrameTimer.start()
+	pass # replace with function body
+
+
+func _on_AnimationTimer_timeout():
+	blinks -= 1
+	self.visible = true
+	$AnimationFrameTimer.start()
+
+func _on_AnimationFrameTimer_timeout():
+	_fall_off()
+	
+func _fall_off():
+	if blinks != 0:
+		self.visible = false
+		$AnimationTimer.start()
+	else:
+		queue_free()
+	
+
