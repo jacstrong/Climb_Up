@@ -51,8 +51,9 @@ func cameraMoved():
 		placePlats((last_level + 200) * -1)
 		levels.push_front((last_level + 200) * -1)
 		print(levels)
-		removePlats(levels.back())
-		levels.pop_back()
+		if camera.get_origin().y > 600:
+			removePlats(levels.back())
+			levels.pop_back()
 		last_level = ((last_level + 200))
 		score += 1
 
@@ -105,6 +106,9 @@ func restart():
 		placePlats(x)
 	last_level = 200
 	score = 0
+	$UI/Label.text = "Score: " + String(score)
+	$Player.position.y = 500
+	$Player.position.x = screensize.x / 2
 	
 
 func _on_Button_pressed():

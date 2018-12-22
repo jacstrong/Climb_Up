@@ -12,4 +12,9 @@ config_version=3
 
 config/name="Climb Up"
 run/main_scene="res://scenes/Main.tscn"
+boot_splash/image="res://841720.png"
 config/icon="res://icon.png"
+
+[rendering]
+
+environment/default_clear_color=Color( 0.124969, 0.627404, 0.761719, 1 )
