@@ -18,7 +18,7 @@ func get_input():
 	vel.x = 0
 	var right = Input.is_action_pressed('ui_right')
 	var left = Input.is_action_pressed('ui_left')
-	var jump = Input.is_action_just_pressed('ui_up') || touchInput
+	var jump = Input.is_action_just_pressed('ui_up') || touchInput || Input.is_action_just_pressed('ui_accept')
 	
 	if is_on_floor() and jump:
 		vel.y = jump_speed
